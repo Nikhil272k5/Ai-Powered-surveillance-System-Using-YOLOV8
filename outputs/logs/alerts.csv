@@ -1,0 +1,78 @@
+timestamp,type,track_id,description,snapshot_path,severity,additional_info
+2025-08-23 11:34:22,counterflow,2,Counterflow movement detected (cosine similarity: -0.85),outputs/snaps/snap_1755929062_2_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8539736866950989)}
+2025-08-23 11:34:23,counterflow,8,Counterflow movement detected (cosine similarity: -0.90),outputs/snaps/snap_1755929063_8_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8999438285827637)}
+2025-08-23 11:34:23,counterflow,3,Counterflow movement detected (cosine similarity: -0.97),outputs/snaps/snap_1755929063_3_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9734898209571838)}
+2025-08-23 11:34:23,counterflow,12,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929063_12_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9859580993652344)}
+2025-08-23 11:34:23,counterflow,1,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929063_1_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9957942366600037)}
+2025-08-23 11:34:23,counterflow,9,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929063_9_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9985108971595764)}
+2025-08-23 11:34:24,speed_spike,13,Speed spike detected: 44.7 px/frame (avg: 3.4),outputs/snaps/snap_1755929064_13_speed_spike.jpg,high,"{'speed': np.float32(44.70017), 'avg_speed': np.float32(3.3657568)}"
+2025-08-23 11:34:24,counterflow,6,Counterflow movement detected (cosine similarity: -0.96),outputs/snaps/snap_1755929064_6_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9579730033874512)}
+2025-08-23 11:34:24,speed_spike,17,Speed spike detected: 37.5 px/frame (avg: 0.7),outputs/snaps/snap_1755929064_17_speed_spike.jpg,high,"{'speed': np.float32(37.49727), 'avg_speed': np.float32(0.6537676)}"
+2025-08-23 11:34:25,counterflow,16,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929065_16_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9983779788017273)}
+2025-08-23 11:34:25,counterflow,19,Counterflow movement detected (cosine similarity: -0.94),outputs/snaps/snap_1755929065_19_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.940970778465271)}
+2025-08-23 11:34:25,speed_spike,5,Speed spike detected: 37.9 px/frame (avg: 0.0),outputs/snaps/snap_1755929065_5_speed_spike.jpg,high,"{'speed': np.float32(37.86613), 'avg_speed': np.float32(0.0)}"
+2025-08-23 11:34:25,counterflow,5,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929065_5_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9912505149841309)}
+2025-08-23 11:34:25,speed_spike,4,Speed spike detected: 38.1 px/frame (avg: 3.4),outputs/snaps/snap_1755929065_4_speed_spike.jpg,high,"{'speed': np.float32(38.14965), 'avg_speed': np.float32(3.3886793)}"
+2025-08-23 11:34:25,counterflow,4,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929065_4_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9995282292366028)}
+2025-08-23 11:34:26,speed_spike,18,Speed spike detected: 32.8 px/frame (avg: 0.0),outputs/snaps/snap_1755929066_18_speed_spike.jpg,high,"{'speed': np.float32(32.835625), 'avg_speed': np.float32(0.0)}"
+2025-08-23 11:34:26,counterflow,18,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929066_18_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9975614547729492)}
+2025-08-23 11:34:27,speed_spike,23,Speed spike detected: 37.4 px/frame (avg: 2.7),outputs/snaps/snap_1755929067_23_speed_spike.jpg,high,"{'speed': np.float32(37.388767), 'avg_speed': np.float32(2.7372246)}"
+2025-08-23 11:34:27,counterflow,23,Counterflow movement detected (cosine similarity: -0.97),outputs/snaps/snap_1755929067_23_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9717724323272705)}
+2025-08-23 11:34:28,counterflow,29,Counterflow movement detected (cosine similarity: -0.95),outputs/snaps/snap_1755929068_29_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9530667066574097)}
+2025-08-23 11:34:30,counterflow,32,Counterflow movement detected (cosine similarity: -0.75),outputs/snaps/snap_1755929070_32_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.7520996928215027)}
+2025-08-23 11:34:32,counterflow,33,Counterflow movement detected (cosine similarity: -0.92),outputs/snaps/snap_1755929072_33_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9177045822143555)}
+2025-08-23 11:34:34,counterflow,50,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929074_50_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9876010417938232)}
+2025-08-23 11:34:34,speed_spike,42,Speed spike detected: 33.0 px/frame (avg: 3.6),outputs/snaps/snap_1755929074_42_speed_spike.jpg,high,"{'speed': np.float32(32.951286), 'avg_speed': np.float32(3.629782)}"
+2025-08-23 11:34:35,speed_spike,48,Speed spike detected: 32.0 px/frame (avg: 2.9),outputs/snaps/snap_1755929075_48_speed_spike.jpg,high,"{'speed': np.float32(32.0191), 'avg_speed': np.float32(2.8927233)}"
+2025-08-23 11:34:36,counterflow,54,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929076_54_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9999913573265076)}
+2025-08-23 11:34:36,counterflow,59,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929076_59_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9945526719093323)}
+2025-08-23 11:34:37,counterflow,60,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929077_60_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9941275715827942)}
+2025-08-23 11:34:37,counterflow,57,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929077_57_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9999919533729553)}
+2025-08-23 11:34:37,counterflow,64,Counterflow movement detected (cosine similarity: -0.93),outputs/snaps/snap_1755929077_64_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9313179850578308)}
+2025-08-23 11:34:38,counterflow,62,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929078_62_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9869897961616516)}
+2025-08-23 11:34:38,speed_spike,53,Speed spike detected: 45.8 px/frame (avg: 3.3),outputs/snaps/snap_1755929078_53_speed_spike.jpg,high,"{'speed': np.float32(45.765686), 'avg_speed': np.float32(3.2921622)}"
+2025-08-23 11:34:39,counterflow,67,Counterflow movement detected (cosine similarity: -0.70),outputs/snaps/snap_1755929079_67_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.7003850340843201)}
+2025-08-23 11:34:39,counterflow,61,Counterflow movement detected (cosine similarity: -0.91),outputs/snaps/snap_1755929079_61_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9133135080337524)}
+2025-08-23 11:34:40,counterflow,74,Counterflow movement detected (cosine similarity: -0.85),outputs/snaps/snap_1755929080_74_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8523347973823547)}
+2025-08-23 11:34:41,counterflow,78,Counterflow movement detected (cosine similarity: -0.79),outputs/snaps/snap_1755929081_78_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.7930900454521179)}
+2025-08-23 11:34:41,counterflow,66,Counterflow movement detected (cosine similarity: -0.98),outputs/snaps/snap_1755929081_66_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9837294816970825)}
+2025-08-23 11:34:41,counterflow,77,Counterflow movement detected (cosine similarity: -0.87),outputs/snaps/snap_1755929081_77_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8666471242904663)}
+2025-08-23 11:34:42,counterflow,75,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929082_75_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9955676794052124)}
+2025-08-23 11:34:42,speed_spike,82,Speed spike detected: 41.8 px/frame (avg: 1.6),outputs/snaps/snap_1755929082_82_speed_spike.jpg,high,"{'speed': np.float32(41.773617), 'avg_speed': np.float32(1.6169801)}"
+2025-08-23 11:34:43,counterflow,92,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929083_92_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9999890923500061)}
+2025-08-23 11:34:43,counterflow,93,Counterflow movement detected (cosine similarity: -0.98),outputs/snaps/snap_1755929083_93_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9842399954795837)}
+2025-08-23 11:38:14,counterflow,1,Counterflow movement detected (cosine similarity: -0.87),outputs/snaps/snap_1755929294_1_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8677820563316345)}
+2025-08-23 11:38:14,counterflow,5,Counterflow movement detected (cosine similarity: -0.87),outputs/snaps/snap_1755929294_5_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8665834665298462)}
+2025-08-23 11:38:14,counterflow,6,Counterflow movement detected (cosine similarity: -0.93),outputs/snaps/snap_1755929294_6_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9325979351997375)}
+2025-08-23 11:38:14,counterflow,9,Counterflow movement detected (cosine similarity: -0.71),outputs/snaps/snap_1755929294_9_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.7125450372695923)}
+2025-08-23 11:38:14,counterflow,11,Counterflow movement detected (cosine similarity: -0.83),outputs/snaps/snap_1755929294_11_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8290322422981262)}
+2025-08-23 11:38:15,counterflow,2,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929295_2_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9963477849960327)}
+2025-08-23 11:38:15,counterflow,4,Counterflow movement detected (cosine similarity: -0.90),outputs/snaps/snap_1755929295_4_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8978520631790161)}
+2025-08-23 11:38:15,counterflow,8,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929295_8_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9990639090538025)}
+2025-08-23 11:38:15,counterflow,3,Counterflow movement detected (cosine similarity: -0.96),outputs/snaps/snap_1755929295_3_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9630879759788513)}
+2025-08-23 11:38:15,counterflow,7,Counterflow movement detected (cosine similarity: -0.71),outputs/snaps/snap_1755929295_7_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.7071418166160583)}
+2025-08-23 11:38:17,counterflow,19,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929297_19_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9987325072288513)}
+2025-08-23 11:38:19,counterflow,16,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929299_16_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9917314052581787)}
+2025-08-23 11:38:20,counterflow,21,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929300_21_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9921823143959045)}
+2025-08-23 11:38:22,counterflow,24,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929302_24_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9938534498214722)}
+2025-08-23 11:38:23,counterflow,27,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929303_27_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9890987873077393)}
+2025-08-23 11:38:26,counterflow,31,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929306_31_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9999980926513672)}
+2025-08-23 11:38:31,counterflow,42,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929311_42_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9887658953666687)}
+2025-08-23 11:38:33,speed_spike,28,Speed spike detected: 35.2 px/frame (avg: 0.2),outputs/snaps/snap_1755929313_28_speed_spike.jpg,high,"{'speed': np.float32(35.192356), 'avg_speed': np.float32(0.1565712)}"
+2025-08-23 11:38:33,counterflow,28,Counterflow movement detected (cosine similarity: -0.77),outputs/snaps/snap_1755929313_28_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.7722364068031311)}
+2025-08-23 11:38:33,counterflow,43,Counterflow movement detected (cosine similarity: -0.86),outputs/snaps/snap_1755929313_43_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8617746829986572)}
+2025-08-23 11:38:34,counterflow,55,Counterflow movement detected (cosine similarity: -0.99),outputs/snaps/snap_1755929314_55_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.992832601070404)}
+2025-08-23 11:38:38,counterflow,62,Counterflow movement detected (cosine similarity: -0.98),outputs/snaps/snap_1755929318_62_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9822627305984497)}
+2025-08-23 11:38:42,speed_spike,63,Speed spike detected: 36.3 px/frame (avg: 1.5),outputs/snaps/snap_1755929322_63_speed_spike.jpg,high,"{'speed': np.float32(36.251923), 'avg_speed': np.float32(1.4794656)}"
+2025-08-23 11:38:45,counterflow,61,Counterflow movement detected (cosine similarity: -0.97),outputs/snaps/snap_1755929325_61_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9704565405845642)}
+2025-08-23 11:38:45,counterflow,66,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929325_66_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.99560546875)}
+2025-08-23 11:38:48,counterflow,74,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929328_74_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9972684979438782)}
+2025-08-23 11:38:48,counterflow,67,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929328_67_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9999107122421265)}
+2025-08-23 11:38:55,counterflow,81,Counterflow movement detected (cosine similarity: -0.88),outputs/snaps/snap_1755929335_81_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8759695291519165)}
+2025-08-23 11:38:56,counterflow,91,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929336_91_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9967806339263916)}
+2025-08-23 11:39:00,counterflow,98,Counterflow movement detected (cosine similarity: -0.95),outputs/snaps/snap_1755929340_98_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9518139958381653)}
+2025-08-23 11:39:02,speed_spike,97,Speed spike detected: 30.3 px/frame (avg: 1.2),outputs/snaps/snap_1755929342_97_speed_spike.jpg,high,"{'speed': np.float32(30.312963), 'avg_speed': np.float32(1.1786155)}"
+2025-08-23 11:39:02,counterflow,97,Counterflow movement detected (cosine similarity: -0.97),outputs/snaps/snap_1755929342_97_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9664523601531982)}
+2025-08-23 11:39:03,counterflow,100,Counterflow movement detected (cosine similarity: -0.90),outputs/snaps/snap_1755929343_100_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9026186466217041)}
+2025-08-23 11:39:04,counterflow,108,Counterflow movement detected (cosine similarity: -0.87),outputs/snaps/snap_1755929344_108_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.8747413158416748)}
+2025-08-23 11:39:08,counterflow,114,Counterflow movement detected (cosine similarity: -1.00),outputs/snaps/snap_1755929348_114_counterflow.jpg,medium,{'cosine_similarity': np.float64(-0.9980604648590088)}
