@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABNOGUARD | AI-Powered Surveillance System</title>
+    <meta name="description" content="Advanced AI Surveillance System using YOLOv8 for real-time anomaly detection, behavior analysis, and threat assessment.">
+    <style>
+        :root {
+            --bg: #0d1117; --panel: #161b22; --card: #21262d;
+            --border: #30363d; --text: #c9d1d9; --dim: #8b949e;
+            --accent: #58a6ff; --success: #3fb950; --warning: #d29922; --danger: #f85149;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(88,166,255,0.1) 0%, rgba(118,75,162,0.1) 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #58a6ff, #a371f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.3em;
+            color: var(--dim);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+        .btn-primary:hover { background: #4090e0; transform: translateY(-2px); }
+        .btn-secondary {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover { background: var(--panel); }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 50px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .feature-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: var(--dim);
+            font-size: 0.95em;
+        }
+
+        /* Dashboard Preview */
+        .preview {
+            padding: 80px 20px;
+            background: var(--panel);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .preview-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .preview h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        .preview p {
+            color: var(--dim);
+            margin-bottom: 40px;
+        }
+        .dashboard-mockup {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .mockup-nav {
+            background: var(--card);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        .mockup-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .mockup-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .mockup-dot.red { background: #ff5f57; }
+        .mockup-dot.yellow { background: #febc2e; }
+        .mockup-dot.green { background: #28c840; }
+        .mockup-url {
+            background: var(--bg);
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            color: var(--dim);
+            flex: 1;
+        }
+        .mockup-content {
+            padding: 30px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mockup-upload {
+            background: var(--panel);
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 40px 60px;
+            text-align: center;
+        }
+        .mockup-upload-icon { font-size: 3em; margin-bottom: 15px; }
+        .mockup-upload h3 { margin-bottom: 10px; }
+        .mockup-upload p { color: var(--dim); margin-bottom: 20px; }
+        .mockup-btn {
+            background: var(--accent);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* Tech Stack */
+        .tech {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .tech-badge {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* How to Run */
+        .howto {
+            padding: 80px 20px;
+            background: var(--panel);
+            border-top: 1px solid var(--border);
+        }
+        .howto-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .howto h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+        .code-block {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        .code-block code {
+            color: var(--success);
+            font-family: 'Consolas', monospace;
+            font-size: 0.95em;
+        }
+        .step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .step-num {
+            background: var(--accent);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h4 { margin-bottom: 5px; }
+        .step-content p { color: var(--dim); font-size: 0.95em; }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        footer p { color: var(--dim); }
+        footer a { color: var(--accent); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero p { font-size: 1.1em; }
+            .mockup-upload { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="hero-badge">🛡️ AI-Powered Security</span>
+        <h1>ABNOGUARD</h1>
+        <p>Advanced AI Surveillance System using YOLOv8 for real-time anomaly detection, behavior analysis, and intelligent threat assessment.</p>
+        <div class="hero-buttons">
+            <a href="https://github.com/Nikhil272k5/Ai-Powered-surveillance-System-Using-YOLOV8" class="btn btn-primary" target="_blank">
+                ⭐ View on GitHub
+            </a>
+            <a href="#howto" class="btn btn-secondary">
+                📖 How to Run
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">🚀 Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>YOLOv8 Detection</h3>
+                <p>State-of-the-art object detection with real-time tracking of people, vehicles, and objects.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Behavior Analysis</h3>
+                <p>AI-powered behavioral intent classification - walking, running, loitering, suspicious activity.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚠️</div>
+                <h3>Anomaly Detection</h3>
+                <p>Machine learning based anomaly scoring with automatic screenshot capture on detection.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Risk Assessment</h3>
+                <p>Real-time risk scoring with threat classification (LOW, MEDIUM, HIGH).</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Incident Briefings</h3>
+                <p>Detailed incident reports with subject info, behavioral analysis, and recommended actions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Auto Screenshots</h3>
+                <p>Automatic screenshot capture when anomalies are detected for evidence collection.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="preview">
+        <div class="preview-container">
+            <h2>💻 Dashboard Preview</h2>
+            <p>Clean, modern interface for real-time surveillance monitoring</p>
+            <div class="dashboard-mockup">
+                <div class="mockup-nav">
+                    <div class="mockup-dots">
+                        <div class="mockup-dot red"></div>
+                        <div class="mockup-dot yellow"></div>
+                        <div class="mockup-dot green"></div>
+                    </div>
+                    <div class="mockup-url">http://127.0.0.1:8000</div>
+                </div>
+                <div class="mockup-content">
+                    <div class="mockup-upload">
+                        <div class="mockup-upload-icon">📁</div>
+                        <h3>Upload Your Video</h3>
+                        <p>Drag & drop a video file here, or click to browse</p>
+                        <div class="mockup-btn">Select Video File</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech">
+        <h2 class="section-title">🛠️ Technology Stack</h2>
+        <div class="tech-grid">
+            <div class="tech-badge">🐍 Python</div>
+            <div class="tech-badge">⚡ FastAPI</div>
+            <div class="tech-badge">🎯 YOLOv8</div>
+            <div class="tech-badge">👁️ OpenCV</div>
+            <div class="tech-badge">🧠 MediaPipe</div>
+            <div class="tech-badge">📊 NumPy</div>
+            <div class="tech-badge">🌐 WebSocket</div>
+            <div class="tech-badge">💾 SQLite</div>
+        </div>
+    </section>
+
+    <!-- How to Run -->
+    <section class="howto" id="howto">
+        <div class="howto-container">
+            <h2>📖 How to Run</h2>
+            
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Clone the Repository</h4>
+                    <div class="code-block">
+                        <code>git clone https://github.com/Nikhil272k5/Ai-Powered-surveillance-System-Using-YOLOV8.git</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Install Dependencies</h4>
+                    <div class="code-block">
+                        <code>pip install -r requirements.txt</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Run the System</h4>
+                    <div class="code-block">
+                        <code>python main_system.py</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>Open Dashboard</h4>
+                    <p>Open your browser and go to <strong>http://127.0.0.1:8000</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Built with ❤️ by <a href="https://github.com/Nikhil272k5" target="_blank">Nikhil</a></p>
+        <p style="margin-top: 10px;">
+            <a href="https://github.com/Nikhil272k5/Ai-Powered-surveillance-System-Using-YOLOV8" target="_blank">GitHub Repository</a>
+        </p>
+    </footer>
+</body>
+</html>
