@@ -1,0 +1,206 @@
+# AbnoGuard Intelligence Platform - Master Configuration
+# All modules are opt-in and backward-compatible
+
+system:
+  # Mode: "basic" uses original VideoRunner only, "enhanced" enables all intelligence modules
+  mode: "enhanced"
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  log_level: "INFO"
+  # Profile storage directory
+  profiles_dir: "profiles"
+  # Whether to auto-save state on exit
+  auto_save_state: true
+
+# =============================================================================
+# MODULE 1: Self-Learning Normality Engine
+# Learns what "normal" looks like for each camera/context without labels
+# =============================================================================
+normality_engine:
+  enabled: true
+  # Time window for learning baseline (minutes)
+  learning_window_minutes: 30
+  # How fast the system adapts to new patterns (0.0-1.0)
+  adaptation_rate: 0.1
+  # Number of Gaussian components for GMM
+  gmm_components: 5
+  # Anomaly threshold (standard deviations from mean)
+  anomaly_threshold: 2.5
+  # Minimum observations before baseline is considered learned
+  min_observations: 100
+  # Features to track
+  features:
+    - motion_speed
+    - dwell_time
+    - crowd_density
+    - object_presence_duration
+    - spatial_distribution
+
+# =============================================================================
+# MODULE 2: Multi-Signal Confidence Fusion Engine
+# Validates every alert before emission using multiple signals
+# =============================================================================
+confidence_fusion:
+  enabled: true
+  # Minimum trust score (0-100) to emit an alert
+  trust_threshold: 60
+  # Signal weights (must sum to 1.0)
+  weights:
+    vision_confidence: 0.25      # YOLO detection confidence
+    temporal_persistence: 0.20   # How long the event has been detected
+    motion_stability: 0.15       # Consistency of motion patterns
+    crowd_context: 0.15          # Crowd density appropriateness
+    zone_rules: 0.10             # Rule-based zone compliance
+    historical_accuracy: 0.15    # Past alert accuracy for this type
+  # Suppression behavior
+  log_suppressed_alerts: true
+  # Explanation verbosity: "minimal", "standard", "detailed"
+  explanation_verbosity: "standard"
+
+# =============================================================================
+# MODULE 3: Behavior & Intent Inference Layer
+# Classifies behavior intent, not just objects
+# =============================================================================
+behavior_classifier:
+  enabled: true
+  # ML model type: "random_forest", "xgboost", "isolation_forest"
+  model_type: "random_forest"
+  # Minimum confidence for classification
+  classification_threshold: 0.6
+  # Intent classes to detect
+  intent_classes:
+    - normal_transit
+    - waiting
+    - loitering
+    - panic_movement
+    - evasive_behavior
+    - careless_abandonment
+    - suspicious_abandonment
+  # Feature extraction settings
+  feature_extraction:
+    # Number of past frames to consider
+    history_length: 30
+    # Update interval (frames)
+    update_interval: 5
+
+# =============================================================================
+# MODULE 4: Causal Reasoning & Event Chain Engine
+# Builds event graphs and explains why incidents occurred
+# =============================================================================
+causal_reasoning:
+  enabled: true
+  # How far back to look for causal events (seconds)
+  lookback_seconds: 30
+  # Spatial proximity for causal linking (pixels)
+  spatial_proximity: 200
+  # Minimum events to form a chain
+  min_chain_length: 2
+  # Event types to track for causal analysis
+  tracked_events:
+    - crowd_surge
+    - exit_blockage
+    - panic_movement
+    - object_obstruction
+    - sudden_gathering
+    - mass_direction_change
+  # Explanation generation
+  explanation_templates: true
+
+# =============================================================================
+# MODULE 5: Autonomous Improvement Loop
+# Self-evolves without retraining based on feedback
+# =============================================================================
+self_improvement:
+  enabled: true
+  # Learning rate for threshold adjustments (0.0-1.0)
+  learning_rate: 0.05
+  # Minimum alerts before adjustments start
+  min_alerts_for_adjustment: 20
+  # Time window for performance calculation (hours)
+  performance_window_hours: 24
+  # Automatic timeout for unacknowledged alerts (seconds)
+  # Set to -1 to disable automatic dismissal
+  auto_dismiss_timeout: 300
+  # Maximum adjustment per cycle
+  max_adjustment_per_cycle: 0.1
+  # Feedback modes
+  feedback:
+    # Accept human feedback when available
+    accept_human_feedback: true
+    # Learn from timeout dismissals
+    learn_from_timeouts: true
+
+# =============================================================================
+# Multi-Modal Audio Intelligence (Optional)
+# Analyzes audio extracted from video files
+# =============================================================================
+audio_analyzer:
+  enabled: false  # Set to true to enable
+  # Audio extraction method
+  extraction_method: "moviepy"  # or "ffmpeg"
+  # Sample rate for analysis (Hz)
+  sample_rate: 22050
+  # Detection settings
+  detection:
+    scream:
+      enabled: true
+      frequency_min: 1000  # Hz
+      frequency_max: 4000  # Hz
+      amplitude_threshold: 0.7
+    glass_break:
+      enabled: true
+      frequency_min: 2000  # Hz
+      frequency_max: 8000  # Hz
+    sudden_noise:
+      enabled: true
+      amplitude_spike_ratio: 3.0  # Ratio above average
+
+# =============================================================================
+# Web Dashboard Configuration
+# =============================================================================
+dashboard:
+  enabled: true
+  host: "127.0.0.1"
+  port: 8080
+  # WebSocket for real-time updates
+  websocket_enabled: true
+  websocket_update_interval_ms: 100
+  # Video streaming
+  video_stream:
+    enabled: true
+    quality: 80  # JPEG quality (0-100)
+    max_fps: 15
+  # Data retention
+  max_alerts_in_memory: 1000
+  max_events_in_memory: 5000
+
+# =============================================================================
+# Dataset Configuration
+# =============================================================================
+datasets:
+  download_dir: "data/datasets"
+  cache_preprocessed: true
+  available:
+    ucf_crime:
+      enabled: true
+      url: "https://www.crcv.ucf.edu/data/UCF_Crimes.zip"
+    shanghaitech:
+      enabled: true
+      url: "https://svip-lab.github.io/dataset/campus_dataset.html"
+    ucsd:
+      enabled: true
+      url: "http://www.svcl.ucsd.edu/projects/anomaly/dataset.html"
+    avenue:
+      enabled: true
+      url: "http://www.cse.cuhk.edu.hk/leojia/projects/detectabnormal/dataset.html"
+
+# =============================================================================
+# Zone Configuration (per camera/video)
+# Define restricted zones, entry/exit points, etc.
+# =============================================================================
+zones:
+  # Example zone configuration (override per video)
+  default:
+    restricted_areas: []  # List of polygon coordinates
+    entry_points: []
+    exit_points: []
+    expected_flow_direction: [1.0, 0.0]  # Rightward by default
