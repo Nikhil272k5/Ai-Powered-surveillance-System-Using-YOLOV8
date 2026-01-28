@@ -1,0 +1,62 @@
+# Datasets and Videos - Do not push
+Avenue_Dataset/
+UCF-Crime-DVS-main/
+datasets/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+uploads/*.mp4
+uploads/*.avi
+
+# Model weights (large files)
+*.pt
+*.pth
+*.onnx
+*.weights
+
+# Screenshots (generated)
+screenshots/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Database
+*.db
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Byte-compiled files
+*.pyc
+
+# Distribution
+dist/
+build/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary
+*.tmp
+*.temp
