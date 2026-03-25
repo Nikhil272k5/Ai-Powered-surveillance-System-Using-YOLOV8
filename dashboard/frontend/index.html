@@ -720,6 +720,55 @@
                 opacity: 0;
             }
         }
+        /* Settings Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.show { display: flex; }
+        .modal-content {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 12px;
+            width: 400px;
+            position: relative;
+        }
+        .modal-header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-close {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: var(--dim);
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: var(--dim);
+        }
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: inherit;
+        }
     </style>
 </head>
 
@@ -736,6 +785,7 @@
             <a class="nav-link" data-page="heatmap">🗺️ Heatmap</a>
             <a class="nav-link" data-page="forensics">🔍 Forensics</a>
             <a class="nav-link" data-page="system">⚙️ System</a>
+            <a class="nav-link" onclick="openSettings()">⚙️ Settings</a>
         </div>
         <div class="status">
             <span class="status-dot" id="llm-status-dot" style="background: var(--accent);"></span>
@@ -1109,16 +1159,60 @@
         </div>
     </div>
 
+    <!-- SETTINGS MODAL -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ Connection Settings</h3>
+                <span class="modal-close" onclick="closeSettings()">&times;</span>
+            </div>
+            <p style="font-size: 0.85em; color: var(--dim); margin-bottom: 20px;">
+                Required for Vercel deployment. Enter your Render backend URL below.
+            </p>
+            <div class="form-group">
+                <label class="form-label">Backend API URL (Render)</label>
+                <input type="text" id="config-backend-url" class="form-input" placeholder="https://your-app.onrender.com">
+            </div>
+            <button class="upload-btn" style="width: 100%;" onclick="saveSettings()">Save & Reload</button>
+            <p style="font-size: 0.75em; color: var(--dim); margin-top: 15px; text-align: center;">
+                Current: <span id="current-backend-display" style="color: var(--accent);"></span>
+            </p>
+        </div>
+    </div>
+
     <div class="toast-container" id="toast-container"></div>
 
     <script>
         // Dynamic configuration for deployment
-        const backendHost = window.RENDER_EXTERNAL_URL || window.location.host;
-        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const httpProtocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+        let backendHost = localStorage.getItem('backend_url') || window.RENDER_EXTERNAL_URL || window.location.host;
         
-        const API_BASE = `${httpProtocol}//${backendHost}/api/soc`;
-        const BASE_URL = `${httpProtocol}//${backendHost}`;
+        // Remove trailing slash if present
+        if (backendHost.endsWith('/')) backendHost = backendHost.slice(0, -1);
+        // Remove http/https if present for WebSocket construction
+        const backendHostClean = backendHost.replace('https://', '').replace('http://', '');
+        
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const httpProtocol = backendHost.startsWith('http') ? '' : (window.location.protocol === 'https:' ? 'https://' : 'http://');
+        
+        const API_BASE = `${httpProtocol}${backendHost}/api/soc`;
+        const BASE_URL = `${httpProtocol}${backendHost}`;
+
+        // Initialize display
+        document.getElementById('config-backend-url').value = localStorage.getItem('backend_url') || '';
+        document.getElementById('current-backend-display').textContent = backendHost;
+
+        function openSettings() { document.getElementById('settings-modal').classList.add('show'); }
+        function closeSettings() { document.getElementById('settings-modal').classList.remove('show'); }
+        function saveSettings() {
+            const url = document.getElementById('config-backend-url').value.trim();
+            if (url) {
+                localStorage.setItem('backend_url', url);
+                location.reload();
+            } else {
+                localStorage.removeItem('backend_url');
+                location.reload();
+            }
+        }
 
         // ==========================================
         // NAVIGATION
@@ -1199,7 +1293,7 @@
         // ==========================================
         let ws;
         function connectWS() {
-            ws = new WebSocket(`${protocol}//${backendHost}/ws/stream`);
+            ws = new WebSocket(`${protocol}//${backendHostClean}/ws/stream`);
             ws.onmessage = (e) => {
                 const data = JSON.parse(e.data);
                 if (data.type === 'stats') {
