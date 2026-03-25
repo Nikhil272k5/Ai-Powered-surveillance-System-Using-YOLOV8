@@ -1112,8 +1112,13 @@
     <div class="toast-container" id="toast-container"></div>
 
     <script>
-        let selectedFile = null;
-        const API_BASE = '/api/soc';
+        // Dynamic configuration for deployment
+        const backendHost = window.RENDER_EXTERNAL_URL || window.location.host;
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const httpProtocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+        
+        const API_BASE = `${httpProtocol}//${backendHost}/api/soc`;
+        const BASE_URL = `${httpProtocol}//${backendHost}`;
 
         // ==========================================
         // NAVIGATION
@@ -1169,12 +1174,12 @@
             document.getElementById('status-text').textContent = 'Uploading...';
 
             try {
-                const res = await fetch('/api/upload', { method: 'POST', body: formData });
+                const res = await fetch(`${BASE_URL}/api/upload`, { method: 'POST', body: formData });
                 const data = await res.json();
                 if (data.status === 'ok') {
                     document.getElementById('upload-box').style.display = 'none';
                     document.getElementById('live-grid').style.display = 'grid';
-                    document.getElementById('live-feed').src = '/video_feed?' + Date.now();
+                    document.getElementById('live-feed').src = `${BASE_URL}/video_feed?` + Date.now();
                     document.getElementById('status-text').textContent = 'Processing';
                     document.getElementById('status-dot').classList.add('active');
                 }
@@ -1184,7 +1189,7 @@
         };
 
         document.getElementById('stop-btn').onclick = async () => {
-            await fetch('/api/stop', { method: 'POST' });
+            await fetch(`${BASE_URL}/api/stop`, { method: 'POST' });
             document.getElementById('status-text').textContent = 'Stopped';
             document.getElementById('status-dot').classList.remove('active');
         };
@@ -1194,7 +1199,7 @@
         // ==========================================
         let ws;
         function connectWS() {
-            ws = new WebSocket(`ws://${location.host}/ws/stream`);
+            ws = new WebSocket(`${protocol}//${backendHost}/ws/stream`);
             ws.onmessage = (e) => {
                 const data = JSON.parse(e.data);
                 if (data.type === 'stats') {
@@ -1492,7 +1497,7 @@
         // SCREENSHOTS & BRIEFINGS (Original)
         // ==========================================
         async function loadScreenshots() {
-            const res = await fetch('/api/screenshots');
+            const res = await fetch(`${BASE_URL}/api/screenshots`);
             const shots = await res.json();
             const grid = document.getElementById('screenshots-grid');
             if (!shots.length) {
@@ -1516,7 +1521,7 @@
         }
 
         async function loadBriefings() {
-            const res = await fetch('/api/briefings');
+            const res = await fetch(`${BASE_URL}/api/briefings`);
             const briefs = await res.json();
             const list = document.getElementById('briefings-list');
             if (!briefs.length) {
