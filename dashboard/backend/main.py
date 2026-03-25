@@ -5,6 +5,7 @@ No default video - only processes what user uploads
 from fastapi import FastAPI, WebSocket, Request, UploadFile, File
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import asyncio
 import os
@@ -20,7 +21,28 @@ from collections import deque
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
 sys.path.insert(0, PROJECT_ROOT)
 
+# Import SOC API router
+try:
+    from intelligence.soc_api import soc_router
+    SOC_ENABLED = True
+except ImportError as e:
+    print(f"[WARNING] SOC API not available: {e}")
+    SOC_ENABLED = False
+
 app = FastAPI()
+
+# Include SOC API if available
+if SOC_ENABLED:
+    app.include_router(soc_router)
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For production, we recommend restricting this to your Vercel URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
@@ -237,6 +259,10 @@ async def root():
             return HTMLResponse(f.read())
     return HTMLResponse("<h1>Loading...</h1>")
 
+# NOTE: /soc route removed - threat intelligence is now integrated into main dashboard
+
+
+
 @app.post("/api/upload")
 async def upload_and_start(file: UploadFile = File(...)):
     """Upload video and START processing immediately"""
@@ -251,7 +277,7 @@ async def upload_and_start(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, f)
     
     state.current_video = filepath
-    print(f"📁 Uploaded: {filepath}")
+    print(f"[UPLOAD] Uploaded: {filepath}")
     
     # Clear old frame
     with state.frame_lock:
@@ -320,8 +346,8 @@ async def ws_stream(ws: WebSocket):
         pass
 
 def start_server(host="127.0.0.1", port=8000):
-    print(f"🌐 Dashboard ready at http://{host}:{port}")
-    print("⏳ Waiting for video upload...")
+    print(f"[READY] Dashboard at http://{host}:{port}")
+    print("[INFO] Waiting for video upload...")
     uvicorn.run(app, host=host, port=port, log_level="warning")
 
 if __name__ == "__main__":

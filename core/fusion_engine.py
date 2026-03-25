@@ -72,16 +72,16 @@ class DualBrainFusion:
         
         # Initialize Brain-1: Perception
         print("🧠 Initializing Brain-1: Perception...")
-        self.perception = PerceptionFusion(config.get('perception', {}))
+        self.perception = PerceptionFusion(self.config.get('perception', {}))
         
         # Initialize Brain-2: Cognition
         print("🧠 Initializing Brain-2: Cognition...")
-        self.narrative = NarrativeEngine(config.get('narrative', {}))
-        self.memory = TemporalMemory(config.get('memory', {}))
-        self.risk = RiskMatrix(config.get('risk', {}))
-        self.ethics = EthicsLayer(config.get('ethics', {}))
-        self.explain = ExplainabilityEngine(config.get('explain', {}))
-        self.brief_gen = BriefGenerator(config.get('brief', {}))
+        self.narrative = NarrativeEngine(self.config.get('narrative', {}))
+        self.memory = TemporalMemory(self.config.get('memory', {}))
+        self.risk = RiskMatrix(self.config.get('risk', {}))
+        self.ethics = EthicsLayer(self.config.get('ethics', {}))
+        self.explain = ExplainabilityEngine(self.config.get('explain', {}))
+        self.brief_gen = BriefGenerator(self.config.get('brief', {}))
         
         # State tracking
         self.frame_count = 0

@@ -6,8 +6,13 @@
 class CommandCenter {
     constructor() {
         this.ws = null;
-        this.wsUrl = `ws://${window.location.host}/ws/stream`;
-        this.apiUrl = `http://${window.location.host}/api`;
+        // Dynamic configuration for deployment
+        const backendHost = window.RENDER_EXTERNAL_URL || window.location.host;
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const httpProtocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+        
+        this.wsUrl = window.BACKEND_WS_URL || `${protocol}//${backendHost}/ws/stream`;
+        this.apiUrl = window.BACKEND_API_URL || `${httpProtocol}//${backendHost}/api`;
         this.alerts = [];
         this.startTime = Date.now();
         this.isConnected = false;
